@@ -1,164 +1,68 @@
-# ReactJS Kata
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This kata will build your skill with the following in the ReactJS framework:
+## Available Scripts
 
-* Toolchain installation and use including Yarn and Jest
-* Creating a new ReactJS app
-* Configuring the app for testing with Jest and Enzyme
-* Unit Test Driven Development with Jest and Enzyme
+In the project directory, you can run:
 
-## Instructions
+### `npm start`
 
-When you complete this kata, you will know how to do the following:
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-* Set up your development environment
-* Create a new ReactJS project
-* Test drive Fizzbuzz logic using unit tests using Jest and Enzyme
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-You should be able to complete the kata from scratch, without Googling, in
-forty five minutes or less.
+### `npm test`
 
-### Setup Development Toolchain
-[Install Homebrew](https://brew.sh/)
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-[Install Node.js with NVM](https://gist.github.com/d2s/372b5943bce17b964a79)
+### `npm run build`
 
-[Install yarn package management etc](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Create new ReactJS app
-You can use npx which comes with npm, npm, or yarn to create a reactjs app.  The yarn method works 
-perfectly fine.
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-[Brief React Installation Instructions](https://facebook.github.io/create-react-app/docs/getting-started)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-* yarn create react-app reactjs-setup-kata
-* cd reactjs-setup-kata/
-* yarn eject
+### `npm run eject`
 
-If at this point you run your tests with ```yarn test``` and you get a babel error, 
-delete your node_modules and run ```yarn install```.
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-For this app, you can do all your work App.js.  It will be your single view in the app.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Notice that it is a class that extends Component and, like every Component, it has a render
-method.  You can add other methods to it to retrieve data, do calculations, etc.
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-### Configurating for Unit Testing with Jest and Enzyme
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-To add Enzyme:
+## Learn More
 
-```
-yarn add -D enzyme
-yarn add -D enzyme-adapter-react-16"
-```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-create-react-app comes with some default Jest stuff but you'll probably want to do your own
-so you can do Enzyme.  
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-[Setup React with Enzyme](https://airbnb.io/enzyme/docs/installation/)
+### Code Splitting
 
-You'll want to add a jestsetup.js file somewhere that looks like this:
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-```
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';   
-configure({ adapter: new Adapter() });
-```
+### Analyzing the Bundle Size
 
-You'll have to modify the jest setup in package.json so it can find the setup file:
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-```
-"jest": {
-    ...
-    "setupFiles": [
-      "react-app-polyfill/jsdom",
-      "<rootDir>/test/jestsetup.js"
-    ],
-```
+### Making a Progressive Web App
 
-### Unit Testing with Jest
-[Testing React with Jest](https://facebook.github.io/jest/docs/en/tutorial-react.html)
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-Note that, out of the box, yarn+watchman will watch for changes to your project and re-run
-tests around changed code.  You can also instruct it to re-run all tests by type 'a' in
-the terminal window where you ran 'yarn test.'
+### Advanced Configuration
 
-Also note that you will probably have to do 'npm run eject' to do custom configurations
-of Jest, such as specifying a setup file to be run before tests.  It's not scary, though.
-Just make sure to do a 'yarn install' afterward so it'll install the millions of 
-dependencies you were getting for free before.
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Gherkins
+### Deployment
 
-* Given a user is on the Fizzbuzz form
-* When she enters any number into an input box
-* AND clicks the submit button
-* Then the number is displayed
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-* Given a user is on the Fizzbuzz form
-* When she enters 3 into an input box
-* AND clicks the submit button
-* Then the word Fizz is displayed
+### `npm run build` fails to minify
 
-* Given a user is on the Fizzbuzz form
-* When she enters 5 into an input box
-* AND clicks the submit button
-* The word Buzz is displayed
-
-* Given a user is on the Fizzbuzz form
-* When she enters the number that is a multiple of 3 into an input box
-* AND clicks the submit button
-* The word Fizz is displayed
-
-* Given a user is on the Fizzbuzz form
-* When she enters the number that is a multiple of 5 into an input box
-* AND clicks the submit button
-* The word Buzz is displayed
-
-* Given a user is on the Fizzbuzz form
-* When she enters the number 15 into an input box
-* AND clicks the submit button
-* The word Fizzbuzz is displayed
-
-* Given a user is on the Fizzbuzz form
-* When she enters the number that is a multiple of 15 into an input box
-* AND clicks the submit button
-* The word Fizzbuzz is displayed
-
-### The Magical Wonder of FizzBuzz
-FizzBuzz is a deceptively simple programming problem used by countless
-IT recruiters to find out if candidates indeed have at least some of the
-programming skills they claim.  You can implement it in almost any form
-of computer language in no more than a couple minutes.  If you can provide
-input to a function, display the output, and write a couple if-thens, you 
-can complete FizzBuzz.
-
-Here are the rules:
-* Given an input integer
-    * If the integer is divisible by 3, return or display Fizz
-    * If it is divisible by 5, return or display Buzz
-    * If it is divisible by both, return or display FizzBuzz
-    * Otherwise, just return the display the input number
-    
-But wait!  Don't just fixate on a bunch of if-elseif-else stuff.  In interviews,
-FizzBuzz can be an opportunity to show your technical depth.  How would you
-thin slice this problem?  Is there more than one way?  How would you test
-drive it?  What kinds of tests give you the best value?
-
-And, for the implementation itself, what happens if you can't use if blocks?
-Does the implementation language give you other structures you can use?
-What happens if a number is divisible by both 3 and 5?  Is there any point
-in checking for 3 and 5 individually?  
-
-How could you write the code in an
-OO style?  A functional style?  Could you write code that would do the
-evaluation using only binary logic operators?  What if you need to evaluate
-billions of numbers really fast in a stream?  How could you parallelize the
-operation?  Does knowing the answer to one number make it easier to find
-the answer for another?  What are the characteristics of your function?
-Does it run in constant time?  Why or why not?
-
-The point is that there's a wealth of opportunities to explore the whole of 
-computer science, even with such a simple program.  So enjoy doing this
-implementation and let it fill your mind with ideas.
-
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
