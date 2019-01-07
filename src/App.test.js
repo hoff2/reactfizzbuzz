@@ -94,6 +94,7 @@ describe('integration test: fizzbuzz', () => {
     }
 
     it('displays the fizzbuzz of the number entered', () => {
+        checkFizzBuzzInteraction('14', '14');
         checkFizzBuzzInteraction('3', 'fizz');
         checkFizzBuzzInteraction('25', 'buzz');
         checkFizzBuzzInteraction('75', 'fizzbuzz');
