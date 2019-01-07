@@ -4,7 +4,6 @@ import sinon from 'sinon';
 import App, {calculateFizzBuzz} from "./App";
 
 describe('fizzbuzz app', () => {
-
     let fizzBuzzApp;
 
     beforeEach(() => {
@@ -22,7 +21,6 @@ describe('fizzbuzz app', () => {
     it('has a div for results to show up in', () => {
         expect(fizzBuzzApp.exists('div#output')).toBe(true);
     });
-
 });
 
 describe('calculateFizzBuzz function', () => {
@@ -87,7 +85,6 @@ describe('fizzbuzz app output', () => {
 });
 
 describe('integration test: fizzbuzz', () => {
-
     function checkFizzBuzzInteraction(inputValue, expectedOutput) {
         const fizzBuzzApp = shallow(<App calculate={calculateFizzBuzz} />);
         const input = fizzBuzzApp.find('input[type="text"]');
@@ -101,4 +98,4 @@ describe('integration test: fizzbuzz', () => {
         checkFizzBuzzInteraction('25', 'buzz');
         checkFizzBuzzInteraction('75', 'fizzbuzz');
     });
-})
+});
