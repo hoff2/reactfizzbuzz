@@ -6,15 +6,26 @@ class App extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {};
         this.calculate = props.calculate;
+        this.inputChanged = this.inputChanged.bind(this);
+        this.buttonClicked = this.buttonClicked.bind(this);
+    }
+
+    inputChanged(event) {
+        this.setState({ input: event.target.value });
+    }
+
+    buttonClicked() {
+        this.setState({ output: this.calculate(this.state.input) });
     }
 
     render() {
         return (
             <div className="App">
-                <input type="text" />
-                <button onClick={this.calculate}>Click Me!</button>
-                <div id="output" />
+                <input type="text" onChange={this.inputChanged}/>
+                <button onClick={this.buttonClicked}>Click Me!</button>
+                <div id="output">{this.state.output}</div>
             </div>
         );
     }

@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {shallow, mount, render} from 'enzyme';
+import {shallow, mount} from 'enzyme';
+import sinon from 'sinon';
 import App, {calculateFizzBuzz} from "./App";
 
 describe('fizzbuzz app', () => {
@@ -55,18 +55,50 @@ describe('calculateFizzBuzz function', () => {
 
 describe('fizzbuzz app with function', () => {
     let fizzBuzzApp;
-
-    const justLogSomething = (n) => {
-        console.log(`Something! ${n}`);
-        return n;
-    };
+    let spyFunction;
 
     beforeEach(() => {
-        fizzBuzzApp = shallow(<App calculate={justLogSomething} />);
+        spyFunction = sinon.spy();
+        fizzBuzzApp = shallow(<App calculate={spyFunction} />);
     });
 
-    it('whatever', () => {
+    it('calls the provided function when the button is clicked', () => {
         fizzBuzzApp.find('button').simulate('click');
-    })
+        expect(spyFunction.called).toBe(true);
+    });
+
+    it('passes the function what has been typed in to the input', () => {
+        const inputValue = 'Hello';
+        const input = fizzBuzzApp.find('input[type="text"]');
+        input.simulate('change', { target: { value: inputValue }});
+        fizzBuzzApp.find('button').simulate('click');
+        expect(spyFunction.calledWith(inputValue)).toBe(true);
+    });
 });
 
+describe('fizzbuzz app output', () => {
+    it('shows the result of the provided function after the button is clicked', () => {
+        const output = 'Hello';
+        const outputFunction = () => { return output; };
+        const fizzBuzzApp = shallow(<App calculate={outputFunction} />);
+        fizzBuzzApp.find('button').simulate('click');
+        expect(fizzBuzzApp.find('div#output').text()).toBe(output);
+    });
+});
+
+describe('integration test: fizzbuzz', () => {
+
+    function checkFizzBuzzInteraction(inputValue, expectedOutput) {
+        const fizzBuzzApp = shallow(<App calculate={calculateFizzBuzz} />);
+        const input = fizzBuzzApp.find('input[type="text"]');
+        input.simulate('change', { target: { value: inputValue }});
+        fizzBuzzApp.find('button').simulate('click');
+        expect(fizzBuzzApp.find('div#output').text()).toBe(expectedOutput);
+    }
+
+    it('displays the fizzbuzz of the number entered', () => {
+        checkFizzBuzzInteraction('3', 'fizz');
+        checkFizzBuzzInteraction('25', 'buzz');
+        checkFizzBuzzInteraction('75', 'fizzbuzz');
+    });
+})
